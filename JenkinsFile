@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clonar') {
+            steps {
+              git branch: 'main', url: 'https://github.com/danielcferreira/exercicio-e2e.git'
+            }
+        }
+        
+        
+         stage('Instalar') {
+            steps {
+               bat 'npm install' 
+            }
+        }
+        
+        
+         stage('Rodar') {
+            steps {
+               bat 'npm run cy:run'
+            }
+        }
+    }
+}
+
